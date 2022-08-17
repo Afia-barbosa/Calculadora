@@ -1,60 +1,62 @@
 * {
-    box-sizing: border-box;
-    font-family: "Roboto", sans-serif;
-    font-weight: bold;
-    padding: 0;
-    margin: 0;
+  font-size: border-box;
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
 }
 
-body{
-    background: linear-gradient(to right, #08a858, #077707);
+body {
+  background: linear-gradient(to right, #ff4686, #ff4699);
 }
 
-.grid-contaneir{
-    display: grid;
-    justify-content: center;
-    align-content: center;
-    min-height: 100vh;
-    grid-template-columns: repeat(4, 100px);
-    grid-template-rows: minmax(120px, auto) repeat(5, 100px);
+.grid-contanier {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  min-height: 100vh;
+  grid-template-columns: repeat(4, 100px);
+  grid-template-rows: minmax(120px, auto) repeat(5, 100px);
 }
 
-.grid-contaneir > button{
-    cursor: pointer;
-    font-size: 2rem;
-    border: none;
-    border: none;
-    background-color: #111;
-    color: #eee;
+.grid-contanier > button {
+  cursor: pointer;
+  font-size: 2rem;
+  border: 1px solid rgb(41, 36, 36);
+  outline: none;
+  background-color: #111;
+  color: #eee;
 }
 
-.grid-contaneir > .operacao{
-    background: #0fe066;
-    
+.grid-contanier > button:hover {
+  background-color: #eee;
+  color: #111;
 }
 
-.span-dois{
-    grid-column: span 2;
+.grid-contanier > .operator {
+  background: #680427;
 }
 
-.grid-contaneir> .output{
-    grid-column: 1 / -1;
-    background: #222;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: space-around;
-    padding: 10px;
-    word-wrap: break-word;
-    word-break: break-all;
+.span-two {
+  grid-column: span 2;
 }
 
-.grid-contaneir> .output> .anterior_operacao{
-    color: rgba(255, 255, 255, 0.75);
-    font-size: 1.5rem;
+.grid-contanier > .output {
+  grid-column: 1/-1;
+  background: #222;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-around;
+  padding: 10px;
+  word-wrap: break-word;
+  word-break: break-all;
 }
 
-.grid-contaneir> .output> .atual_operacao{
-    color: white;
-    font-size: 2.5rem;
+.grid-contanier > .output > .previous-operand {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 1.5rem;
+}
+
+.grid-contanier > .output > .current-operand {
+  color: white;
+  font-size: 2.5rem;
 }
