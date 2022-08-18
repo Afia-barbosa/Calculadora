@@ -1,12 +1,12 @@
 const numberButtons = document.querySelectorAll("[data-number]");
 const operationButtons = document.querySelectorAll("[data-operator]");
-const equalsButton = document.querySelectorAll("[data-equals]");
-const deleteButton = document.querySelectorAll("[data-delete]");
-const allClearButton = document.querySelectorAll("[data-all-clear]");
-const previuosOperandTextElement = document.querySelectorAll(
+const equalsButton = document.querySelector("[data-equals]");
+const deleteButton = document.querySelector("[data-delete]");
+const allClearButton = document.querySelector("[data-all-clear]");
+const previuosOperandTextElement = document.querySelector(
   "[data-previuos-operand]"
 );
-const currentOperandTextElement = document.querySelectorAll(
+const currentOperandTextElement = document.querySelector(
   "[data-current-operand]"
 );
 
@@ -21,14 +21,16 @@ class Calculator {
     const StringNumber = number.toString();
 
     const IntegerDigits = parseFloat(StringNumber.split(".")[0]);
-    const decimalDigits = StringNumber.split("."[1]);
+    const decimalDigits = StringNumber.split(".")[1];
 
     let IntegerDisplay;
 
-    if (is(IntegerDigits)) {
+    if (isNaN(IntegerDigits)) {
       IntegerDisplay = "";
     } else {
-      IntegerDisplay = IntegerDigits.toLocaleString("en", {});
+      IntegerDisplay = IntegerDigits.toLocaleString("en", {
+        maximumFractionDigits: 0,
+      });
     }
 
     if (decimalDigits != null) {
@@ -65,19 +67,20 @@ class Calculator {
         break;
       default:
         return;
-
-        this.currentOperand = result;
-        this.operation = undefined;
-        this.previuosOperand = "";
     }
+
+    this.currentOperand = result;
+    this.operation = undefined;
+    this.previuosOperand = "";
   }
 
   chooseOperation(operation) {
-    if (this.currentOperand == "") return;
+    if (this.currentOperand === "") return;
 
-    if ((this.previuosOperand = !"")) {
+    if (this.previuosOperand !== "") {
       this.calculate();
     }
+
     this.operation = operation;
 
     this.previuosOperand = this.currentOperand;
@@ -85,7 +88,7 @@ class Calculator {
   }
 
   appendNumber(number) {
-    if (this.currentOperand.includes(".") && number == ".") return;
+    if (this.currentOperand.includes(".") && number === ".") return;
 
     this.currentOperand = `${this.currentOperand}${number.toString()}`;
   }
@@ -97,9 +100,9 @@ class Calculator {
   }
 
   updateDisplay() {
-    this.previuosOperandTextElement.innerText = `$${this.formatDisplayNumber(
+    this.previuosOperandTextElement.innerText = `${this.formatDisplayNumber(
       this.previuosOperand
-    )}${this.operation || ""}`;
+    )} ${this.operation || ""}`;
     this.currentOperandTextElement.innerText = this.formatDisplayNumber(
       this.currentOperand
     );
@@ -111,17 +114,17 @@ const calculator = new Calculator(
   currentOperandTextElement
 );
 
-for (const numberButtons of numberButtons) {
-  numberButtons.addEventListener("click", () => {
-    calculator.appendNumber(numberButtons.innerText);
+for (const numberButton of numberButtons) {
+  numberButton.addEventListener("click", () => {
+    calculator.appendNumber(numberButton.innerText);
     calculator.updateDisplay();
   });
 }
 
-for (const operationButtons of operationButtons) {
+for (const operationButton of operationButtons) {
   operationButton.addEventListener("click", () => {
-    calculator.chooseOperation(operationButtons.innerText);
-    this.updateDisplay();
+    calculator.chooseOperation(operationButton.innerText);
+    calculator.updateDisplay();
   });
 }
 
@@ -136,6 +139,6 @@ equalsButton.addEventListener("click", () => {
 });
 
 deleteButton.addEventListener("click", () => {
-  calculate.delete();
-  this.updateDisplay();
+  calculator.delete();
+  calculator.updateDisplay();
 });

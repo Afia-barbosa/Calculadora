@@ -1,7 +1,9 @@
 * {
-  font-size: border-box;
+  box-sizing: border-box;
   font-family: "Roboto", sans-serif;
   font-weight: bold;
+  margin: 0;
+  padding: 0;
 }
 
 body {
@@ -21,18 +23,18 @@ body {
   cursor: pointer;
   font-size: 2rem;
   border: 1px solid rgb(41, 36, 36);
-  outline: none;
+  outline: invert;
   background-color: #111;
   color: #eee;
 }
 
 .grid-contanier > button:hover {
-  background-color: #eee;
+  background-color: rgb(172, 140, 140);
   color: #111;
 }
 
 .grid-contanier > .operator {
-  background: #680427;
+  background: #cf4777;
 }
 
 .span-two {
@@ -40,7 +42,7 @@ body {
 }
 
 .grid-contanier > .output {
-  grid-column: 1/-1;
+  grid-column: 1/ -1;
   background: #222;
   display: flex;
   flex-direction: column;
