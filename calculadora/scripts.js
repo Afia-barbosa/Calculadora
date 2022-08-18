@@ -96,7 +96,7 @@ class Calculator {
   clear() {
     this.currentOperand = "";
     this.previuosOperand = "";
-    this.operator = undefined;
+    this.operation = undefined;
   }
 
   updateDisplay() {
